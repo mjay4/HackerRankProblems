@@ -1,0 +1,44 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int t = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int tItr = 0; tItr < t; tItr++) {
+            int n = scanner.nextInt();
+            int flag =0;
+            int count =0;
+            int ar[] = new int[n+1];
+            for(int i=1;i<=n; i++){
+                ar[i]=scanner.nextInt();
+                if(ar[i]>(i+2)){
+                    flag =1;
+                }
+            }
+            for(int i=1;i<=n;i++){
+               for (int j = Math.max(0, ar[i]-2); j < i; j++)
+                if (ar[j] > ar[i]) 
+                count++;
+            }
+            if(flag ==1){
+                System.out.println("Too chaotic");
+            }else{
+               System.out.println(count);
+                //Print the no. of paths.
+            }
+           
+        }
+
+        scanner.close();
+    }
+}
