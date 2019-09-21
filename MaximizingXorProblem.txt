@@ -1,0 +1,25 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String [] args) {
+        Scanner scan = new Scanner(System.in);
+        int L = scan.nextInt();
+        int R = scan.nextInt();
+        scan.close();
+        
+        int xored  = L ^ R;
+        int count =0;
+        while(xored>0){
+            count++;
+            xored>>=1;
+        }
+        int result =(int) (Math.pow(2,count)-1);
+        System.out.println(result);
+    }
+}
