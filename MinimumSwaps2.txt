@@ -8,42 +8,21 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the minimumSwaps function below.
-   static void swap(int[] array,int left, int right){
-        int temp = array[right];
-        array[right] = array[left];
-        array[left] = temp;
-    }
-        
-static int minimumSwaps(int[] arr) {
-        int rightPointer = arr.length -1;
-
-        int count = 0;
-        int minimumSwaps = 0;
-
-        while(count < arr.length){
-            int arrValue = count+1;
-
-            if(arr[count] == arrValue){
-                count++;
-                continue;
+   static int minimumSwaps(int[] arr) {
+        int first = 0, last = arr.length - 1;
+        int swaps = 0;
+        while (first < last) {
+            while (arr[first] == first + 1 && first < last)
+                first++;
+            if (first < last) {
+                int temp = arr[arr[first] - 1];
+                arr[arr[first] - 1] = arr[first];
+                arr[first] = temp;
+                swaps++;
             }
-
-            while(arr[rightPointer] != arrValue){
-                rightPointer --;
-            }
-
-            if(rightPointer != count){
-                swap(arr, count, rightPointer);
-                minimumSwaps++;
-            }
-
-            rightPointer = arr.length -1;
-            count++;
         }
-        return minimumSwaps;
+        return swaps;
     }
-
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
@@ -72,3 +51,4 @@ static int minimumSwaps(int[] arr) {
         scanner.close();
     }
 }
+
